@@ -1,9 +1,6 @@
-//#include "/data0/xqian/pioneer/main/shared/include/PIDERWaveform.hh"
-//#include "PIDERWaveform.hh"
-
-void plot(int layer = 0, int strip = 76, int event = 2){
+void check_der(int layer = 0, int strip = 76, int event = 2){
   gStyle->SetOptStat(0);
-  gSystem->Load("./libPiGaudiData.so");
+  gSystem->Load("libPiGaudiData.so");
   TFile *file = new TFile("der.root");
   TTree *der = (TTree*)file->Get("der");
 
