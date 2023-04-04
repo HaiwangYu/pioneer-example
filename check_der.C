@@ -18,9 +18,12 @@ void check_der(int layer = 0, int strip = 76, int event = 2){
     int layer_id = (channel -1) /100 % 100;
     int strip_id = (channel -1)%100;
 
+    //    std::cout << "Channel: " << channel << " Layer: " << layer_id << " Strip: " << strip_id << std::endl;
+    
     if (layer_id != layer) continue;
     
     std::vector<Float_t>& amplitudes = waveform->GetAmplitudes();
+    
     for (Int_t j=0;j!= amplitudes.size();j++){
       h2->SetBinContent(j+1,strip_id+1,amplitudes.at(j));
     }
