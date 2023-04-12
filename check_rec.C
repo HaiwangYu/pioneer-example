@@ -79,16 +79,27 @@ void check_rec(int layer = 0, int strip = 76, int event = 2){
   c1->Divide(2,1);
   c1->cd(1);
   h2->Draw("colz");
+  h2->SetXTitle("Time (ns)");
+  h2->SetYTitle("Channel");
+  h2->SetTitle(Form("Layer: %d",layer));
   c1->cd(2);
   h1->Draw();
   h1->SetLineColor(1);
-  h1->GetXaxis()->SetRangeUser(-10,30);
+  h1->GetXaxis()->SetRangeUser(-10,70);
+  h1->SetXTitle("Time (ns)");
+  h1->SetTitle(Form("Channel: %d",strip));
   for (size_t i=0;i!=nl1;i++){
     g_l1[i]->Draw("Lsame");
     g_l1[i]->SetLineColor(2);
+    g_l1[i]->SetLineWidth(2);
   }
   for (size_t i=0;i!=nhits;i++){
     f1[i]->Draw("same");
     f1[i]->SetLineColor(4);
   }
+  TLegend *le1 = new TLegend(0.6,0.6,0.89,0.89);
+  le1->AddEntry(h1,"Decon. Waveform","l");
+  le1->AddEntry(g_l1[0],"L1 fitting waveform","l");
+  le1->AddEntry(f1[0],"Hit Reco.","l");
+  le1->Draw();
 }
